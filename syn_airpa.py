@@ -66,22 +66,24 @@ class synthetic():
 username = "username"
 password = "password"
 
-ui_auto = synthetic()
+ui = synthetic()
 start = time.time()
-ui_auto.goto_url("https://airpa.io/login/") 
-ui_auto.wait_until_page_loads("default")  # initial landing page load completed
+ui.goto_url("https://airpa.io/login/") 
+ui.wait_until_page_loads("default")  # initial landing page load completed
 landing_page_load_time = time.time() - start
-ui_auto.enter_text(username, '//*[@id="authcontainer"]/div[1]/input')
-ui_auto.enter_text(password, '//*[@id="authcontainer"]/div[2]/input')
-ui_auto.click_action('//*[@id="authcontainer"]/div[3]/button')
-ui_auto.wait_until_element_loads('//*[@id="authenticator"]/div[1]/h2')  # login completed
+start = time.time()
+ui.enter_text(username, '//*[@id="authcontainer"]/div[1]/input')
+ui.enter_text(password, '//*[@id="authcontainer"]/div[2]/input')
+ui.click_action('//*[@id="authcontainer"]/div[3]/button')
+ui.wait_until_element_loads('//*[@id="authenticator"]/div[1]/h2')  # login completed
 login_time = time.time() - start
-ui_auto.click_action('//*[@id="menuIcon"]/div')
-ui_auto.wait_until_element_loads('//*[@id="signoutButton"]')
-ui_auto.click_action('//*[@id="signoutButton"]')
-ui_auto.wait_until_page_loads("default")  # logout completed
+start = time.time()
+ui.click_action('//*[@id="menuIcon"]/div')
+ui.wait_until_element_loads('//*[@id="signoutButton"]')
+ui.click_action('//*[@id="signoutButton"]')
+ui.wait_until_page_loads("default")  # logout completed
 logout_time = time.time() - start
-ui_auto.close()
+ui.close()
 
 # print results
 print("Landing page load time: \t {}".format(landing_page_load_time))
